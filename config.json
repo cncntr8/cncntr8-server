@@ -1,4 +1,7 @@
 {
+  "className": "My Awesome Class",
+  "useMean": true,
+  "meanWindow": 3,
   "users": [
     {
       "username": "jessef",

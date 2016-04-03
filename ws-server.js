@@ -5,6 +5,7 @@ var WS = function(options) {
   var self = this;
   self.port = options.port || 8080;
   self.users = options.users || {};
+  self.className = options.className || 'cncntr8 101';
   self.server = new WebSocketServer({
     port: self.port
   });
@@ -15,7 +16,7 @@ var WS = function(options) {
     if (self.logConnections) {
       console.log('WebSocket client connected');
     };
-    client.send(JSON.stringify({type: 'users', users: self.users}));
+    client.send(JSON.stringify({type: 'config', users: self.users, className: self.className}));
   })
   
   self.server.on('error', function(err) {
