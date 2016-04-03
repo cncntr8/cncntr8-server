@@ -15,7 +15,7 @@ var WS = function(options) {
     if (self.logConnections) {
       console.log('WebSocket client connected');
     };
-    client.send({type: 'users', users: self.users});
+    client.send(JSON.stringify({type: 'users', users: self.users}));
   })
   
   self.server.on('error', function(err) {

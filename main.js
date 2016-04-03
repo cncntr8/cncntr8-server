@@ -1,10 +1,14 @@
 var ServerManager = require('./osc-servermanager.js'),
-    WSServer = require('./ws-server.js'),
-    math = require('mathjs'),
-
-    dataQueue = {};
-
-var users = require('./users.json').users;
+  WSServer = require('./ws-server.js'),
+  math = require('mathjs'),
+  _ = require('underscore'),
+  users = require('./users.json').users,
+  dataQueue = _.mapObject(_.object(_.pluck(users, 'username'), []), function() {
+    return {
+      concentration: [],
+      mellowness: []
+    };
+  });
 
 var manager = new ServerManager({
   users: users,
@@ -15,32 +19,21 @@ var manager = new ServerManager({
 
 var ws = new WSServer({
   port: 8080,
-  users: users
+  users: users,
+  logConnections: true
 });
 
-/*
-
-    dataQueue = {
-        johns: {
-            concentration: [],
-            mellowness: []
-        }
-    }
-
-*/
-
 manager.on('data', function(packet) {
-    var meanData = 0;
+  var meanData = 0;
 
-    dataQueue[packet.user.username][packet.type].push(packet.value);
+  dataQueue[packet.user.username][packet.type].push(packet.value);
 
-    if (dataQueue[packet.user.username][packet.type].length >= 100){
-        var newPacket = packet;
-        newPacket.value = math.mean(dataQueue[packet.user.username][packet.type]);
-        ws.broadcast(newPacket);
-        console.log ("The mean value for " + newPacket.user.username + "'s value of " + newPacket.type + " is " + newPacket.value);
+  if (dataQueue[packet.user.username][packet.type].length >= 100) {
+    var newPacket = packet;
+    newPacket.value = math.mean(dataQueue[packet.user.username][packet.type]);
+    ws.broadcast(newPacket);
 
-        dataQueue[packet.user.username][packet.type] = [];
-    }
+    dataQueue[packet.user.username][packet.type] = [];
+  }
 
 });
