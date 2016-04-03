@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "username": "jessef",
+      "fullname": "Jesse Friedman",
+      "port": 5000
+    },
+    {
+      "username": "johns",
+      "fullname": "John Smith",
+      "port": 5001
+    },
+    {
+      "username": "kylep",
+      "fullname": "Kyle Permuy",
+      "port": 5002
+    }
+  ]
+}
