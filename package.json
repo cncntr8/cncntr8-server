@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/cncntr8/cncntr8-server/issues"
   },
-  "homepage": "https://github.com/cncntr8/cncntr8-server"
+  "homepage": "https://github.com/cncntr8/cncntr8-server",
+  "dependencies": {
+    "node-osc": "^2.0.3",
+    "underscore": "^1.8.3",
+    "ws": "^1.0.1"
+  }
 }
