@@ -1,0 +1,19 @@
+{
+  "name": "cncntr8-server",
+  "version": "1.0.0",
+  "description": "Node.JS server that receives OSC messages from MuseIO, processes them, and relays them over WebSockets to cncntr8-client",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://okofish@github.com/cncntr8/cncntr8-server.git"
+  },
+  "author": "The cncntr8 Team",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cncntr8/cncntr8-server/issues"
+  },
+  "homepage": "https://github.com/cncntr8/cncntr8-server"
+}
