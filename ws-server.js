@@ -4,16 +4,18 @@ var WebSocketServer = WebSocket.Server;
 var WS = function(options) {
   var self = this;
   self.port = options.port || 8080;
+  self.users = options.users || {};
   self.server = new WebSocketServer({
     port: self.port
   });
   self.logConnections = options.logConnections || false;
   console.log('WebSocket server opened on port ' + self.port);
   
-  self.server.on('connection', function(connection) {
+  self.server.on('connection', function(client) {
     if (self.logConnections) {
       console.log('WebSocket client connected');
-    }
+    };
+    client.send({type: 'users', users: self.users});
   })
   
   self.server.on('error', function(err) {
