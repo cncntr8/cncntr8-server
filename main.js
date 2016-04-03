@@ -29,7 +29,6 @@ var ws = new WSServer({
 
 manager.on('data', function(packet) {
   if (useMean) {
-    var meanData = 0;
 
     dataQueue[packet.user.username][packet.type].push(packet.value);
 
